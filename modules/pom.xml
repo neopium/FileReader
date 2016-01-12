@@ -1,0 +1,118 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- =========================================================== -->
+    <!-- Maven coordinates -->
+    <!-- =========================================================== -->
+
+    <groupId>org.test</groupId>
+    <artifactId>file-reader-super-pom</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <!-- =========================================================== -->
+    <!-- POM relationships -->
+    <!-- =========================================================== -->
+
+    <!-- Dependency management for children POM -->
+    <dependencyManagement>
+        <dependencies>
+            <!-- Internal dependencies -->
+            <dependency>
+                <groupId>org.test</groupId>
+                <artifactId>file-reader-features</artifactId>
+                <classifier>features</classifier>
+                <version>${project.version}</version>
+                <type>xml</type>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.test</groupId>
+                <artifactId>file-reader-service</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.test</groupId>
+                <artifactId>file-reader-service-impl</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <!-- External dependencies -->
+            <dependency>
+                <groupId>org.apache.karaf.features</groupId>
+                <artifactId>framework</artifactId>
+                <type>kar</type>
+                <version>${karaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.karaf.features</groupId>
+                <artifactId>standard</artifactId>
+                <classifier>features</classifier>
+                <type>xml</type>
+                <version>${karaf.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>org.osgi.core</artifactId>
+                <version>6.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.osgi</groupId>
+                <artifactId>osgi.cmpn</artifactId>
+                <version>6.0.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.11</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- =========================================================== -->
+    <!-- Project properties -->
+    <!-- =========================================================== -->
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <karaf.version>4.0.3</karaf.version>
+    </properties>
+
+    <!-- =========================================================== -->
+    <!-- Build settings -->
+    <!-- =========================================================== -->
+
+    <!-- Packaging -->
+    <packaging>pom</packaging>
+
+    <!-- Build -->
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.karaf.tooling</groupId>
+                    <artifactId>karaf-maven-plugin</artifactId>
+                    <version>${karaf.version}</version>
+                    <extensions>true</extensions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>3.0.1</version>
+                    <extensions>true</extensions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
