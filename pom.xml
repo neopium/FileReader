@@ -17,6 +17,7 @@
     <!-- Multi-modules definition -->
     <modules>
         <module>modules</module>
+        <module>modules/FileReaderConsumer</module>
         <module>modules/FileReaderService</module>
         <module>modules/FileReaderServiceImpl</module>
         <module>modules/Assembly</module>

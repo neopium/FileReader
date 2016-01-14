@@ -1,23 +1,31 @@
 package org.test.reader.service.factory;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
+import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.test.reader.service.FileReaderService;
 import org.test.reader.service.ReaderFactoryService;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class FileReaderFactory implements ReaderFactoryService {
 
-    @Reference
+    @Reference(cardinality = ReferenceCardinality.MULTIPLE)
     private List<FileReaderService> availableServices;
 
+    @Modified
+    private void modified() {
+        for (FileReaderService service : availableServices) {
+            System.out.println(service);
+        }
+    }
+
     @Override
-    public String readFile(Path filePath) throws IOException {
+    public List<String> readFile(Path filePath) throws IOException {
 
         for (FileReaderService reader : availableServices) {
             if (reader.isFormatSupported(filePath)) {

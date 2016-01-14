@@ -4,6 +4,7 @@
     <feature name='file-reader-feature' description='${project.name}' version='${project.version}'>
         <details>${project.description}</details>
         <feature>scr</feature>
+        <bundle>mvn:org.test/file-reader-consumer/${project.version}</bundle>
         <bundle>mvn:org.test/file-reader-service/${project.version}</bundle>
         <bundle>mvn:org.test/file-reader-service-impl/${project.version}</bundle>
     </feature>

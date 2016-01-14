@@ -2,6 +2,7 @@ package org.test.reader.service;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 public interface ReaderFactoryService {
     /**
@@ -10,7 +11,7 @@ public interface ReaderFactoryService {
      * @return the data object built from the file
      * @throws IOException if there is an error while reading the file
      */
-    String readFile(Path filePath) throws IOException;
+    List<String> readFile(Path filePath) throws IOException;
 
     /**
      * Detects if the format of the provided file is supported.
