@@ -1,7 +1,6 @@
 package org.test.reader.service.factory;
 
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Modified;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.test.reader.service.FileReaderService;
@@ -16,13 +15,6 @@ public class FileReaderFactory implements ReaderFactoryService {
 
     @Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
     private List<FileReaderService> availableServices;
-
-    @Modified
-    private void modified() {
-        for (FileReaderService service : availableServices) {
-            System.out.println(service);
-        }
-    }
 
     @Override
     public List<String> readFile(Path filePath) throws IOException {
