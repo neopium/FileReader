@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class FileReaderFactory implements ReaderFactoryService {
 
-    @Reference(cardinality = ReferenceCardinality.MULTIPLE)
+    @Reference(cardinality = ReferenceCardinality.AT_LEAST_ONE)
     private List<FileReaderService> availableServices;
 
     @Modified
